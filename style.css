@@ -6,7 +6,13 @@
 }
 
 body {
-    background-color: #121212;
+    /* Hintergrundbild einfügen und optimal anpassen */
+    background-image: url('Hintergrund.jpg');
+    background-size: cover;       /* Füllt den gesamten Bildschirm aus */
+    background-position: center;  /* Zentriert das Bild */
+    background-repeat: no-repeat; /* Verhindert das Kacheln des Bildes */
+    background-attachment: fixed; /* Bild bleibt beim Scrollen fest stehen */
+    
     color: #ffffff;
     display: flex;
     justify-content: center;
