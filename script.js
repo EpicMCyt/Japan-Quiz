@@ -14,7 +14,7 @@ const quizData = [
     { type: "multiple", question: "Frage 9 (Mehrfachauswahl): Welche dieser Länder liegen in Europa?", options: ["Frankreich", "Japan", "Spanien", "Kanada"], correct: [0, 2] },
 
     // Typ "matching": Verknüpfung (1 Stück) - Als intuitive Textauswahl gelöst
-    { type: "single", question: "Frage 10 (Verknüpfung): Welches dieser Paare gehört zusammen? (Hardware -> Aufgabe)", options: ["CPU -> Daten speichern", "GPU -> Grafik berechnen", "RAM -> Strom liefern", "SSD -> Monitor anzeigen"], correct: 1 }
+    { type: "single", question: "Frage 10 (Verknüpfung): Welches dieser Paare gehört zusammen? (Hardware -> Aufgabe)", options: ["CPU -> Daten speichern", "GPU -> Grafik berechnen", "RAM -> Speicher"], correct: 1 },
 ];
 
 let currentQuestionIndex = 0;
@@ -85,6 +85,14 @@ function handleSelect(index, button, nextBtn, type) {
     nextBtn.disabled = selectedIndices.length === 0;
 }
 
+// Helper function to compare arrays regardless of order
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    const sorted1 = [...arr1].sort((a, b) => a - b);
+    const sorted2 = [...arr2].sort((a, b) => a - b);
+    return sorted1.every((val, idx) => val === sorted2[idx]);
+}
+
 // 4. Auswertung der Antwort
 function checkAnswer() {
     const currentData = quizData[currentQuestionIndex];
@@ -95,9 +103,7 @@ function checkAnswer() {
         }
     } else if (currentData.type === "multiple") {
         // Prüfen, ob die Arrays exakt übereinstimmen
-        const correctAnswers = currentData.correct;
-        const isCorrect = correctAnswers.length === selectedIndices.length && 
-                          correctAnswers.every(val => selectedIndices.includes(val));
+        const isCorrect = arraysEqual(selectedIndices, currentData.correct);
         if (isCorrect) {
             score++;
         }
