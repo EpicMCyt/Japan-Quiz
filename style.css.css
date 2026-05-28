@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.quiz-container {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 600px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.progress {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    margin-bottom: 15px;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.option-btn {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 2px solid #3a3a3a;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+/* Stil für ausgewählte Antworten (wichtig für Mehrfachauswahl) */
+.option-btn.selected {
+    background-color: #3b82f6;
+    border-color: #60a5fa;
+}
+
+.action-btn {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.action-btn:hover {
+    background-color: #059669;
+}
+
+.action-btn:disabled {
+    background-color: #444;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.result-screen {
+    text-align: center;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #10b981;
+    margin: 20px 0;
+}
