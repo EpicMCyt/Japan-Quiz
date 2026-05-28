@@ -1,15 +1,15 @@
 // 1. Die 10 Fragen (Datenstruktur)
 const quizData = [
     // Typ "single": 4 Optionen, 1 richtige Lösung (6 Stück)
-    { type: "single", question: "Frage 1: Was ist die Hauptstadt von Deutschland?", options: ["München", "Berlin", "Hamburg", "Köln"], correct: 1 },
-    { type: "single", question: "Frage 2: Wie viele Planeten hat unser Sonnensystem?", options: ["7", "8", "9", "10"], correct: 1 },
-    { type: "single", question: "Frage 3: Welches Element hat das chemische Symbol 'O'?", options: ["Gold", "Helium", "Sauerstoff", "Wasserstoff"], correct: 2 },
+    { type: "single", question: "Frage 1: What is the Biggest city in Japan?", options: ["Osaka", "Tokio", "Nara", "Fukushima"], correct: 1 },
+    { type: "single", question: "Frage 2: How many prefectures does Japan have??", options: ["50", "28", "19", "47"], correct: 3 },
+    { type: "single", question: "Frage 3: What can you find on almost every street corner in Japan?", options: ["Restaurants", "Kameras", "Vendingmaschines", "Shrines"], correct: 2 },
     { type: "single", question: "Frage 4: Wer schrieb 'Romeo und Julia'?", options: ["Goethe", "Schiller", "Shakespeare", "Kafka"], correct: 2 },
-    { type: "single", question: "Frage 5: Wie viele Bundesländer hat Deutschland?", options: ["14", "15", "16", "17"], correct: 2 },
-    { type: "single", question: "Frage 6: Welches Tier ist das größte Säugetier der Erde?", options: ["Elefant", "Blauwal", "Giraffe", "Orca"], correct: 1 },
+    { type: "single", question: "Frage 5: Which Japanese writing system is used for foreign words like Coffee or Camera?", options: ["Romanji", "Kanji", "Katakana", "Hiragana"], correct: 2 },
+    { type: "single", question: "Frage 6: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
 
     // Typ "multiple": 4 Optionen, mehrere richtige Lösungen (3 Stück)
-    { type: "multiple", question: "Frage 7 (Mehrfachauswahl): Welche dieser Programmiersprachen werden oft im Webdesign genutzt?", options: ["JavaScript", "HTML", "C++", "Python"], correct: [0, 1] },
+    { type: "multiple", question: "Frage 7 (Mehrfachauswahl): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Christianity"], correct: [1, 2] },
     { type: "multiple", question: "Frage 8 (Mehrfachauswahl): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
     { type: "multiple", question: "Frage 9 (Mehrfachauswahl): Welche dieser Länder liegen in Europa?", options: ["Frankreich", "Japan", "Spanien", "Kanada"], correct: [0, 2] },
 
