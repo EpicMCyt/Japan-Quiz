@@ -11,7 +11,7 @@ const quizData = [
     { type: "multiple", question: "Frage 8: (multiple selection): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Christianity"], correct: [1, 2] },
     { type: "single", question: "Frage 9: How many prefectures does Japan have??", options: ["50", "28", "19", "47"], correct: 3 },{ type: "single", question: "Frage 9: What is the Biggest city in Japan?", options: ["Osaka", "Tokio", "Nara", "Fukushima"], correct: 1 },
     { type: "multiple", question: "Frage 10: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
-    { type: "single", question: "Frage 11: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
+    { type: "single", question: "Frage 11: Which Anime has 7000 Episodes? ", options: ["Mrs. Sazae", "One Piece", "reborn as a vending machine i now wander the dungeon", "Demon Slayer"], correct: 0 },
     { type: "single", question: "Frage 13: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
     { type: "multiple", question: "Frage 14: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
     { type: "single", question: "Frage 15: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
