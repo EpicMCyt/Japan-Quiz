@@ -1,20 +1,20 @@
 // 1. Die 10 Fragen (Datenstruktur)
 const quizData = [
     // Typ "single": 4 Optionen, 1 richtige Lösung (6 Stück)
-    { type: "single", question: "Frage 1: What is the Biggest city in Japan?", options: ["Osaka", "Tokio", "Nara", "Fukushima"], correct: 1 },
-    { type: "single", question: "Frage 2: How many prefectures does Japan have??", options: ["50", "28", "19", "47"], correct: 3 },
-    { type: "multiple", question: "Frage 3: (multiple selection): Welche dieser Länder liegen in Europa?", options: ["Frankreich", "Japan", "Spanien", "Kanada"], correct: [0, 2] },
-    { type: "single", question: "Frage 4: What can you find on almost every street corner in Japan?", options: ["Restaurants", "Kameras", "Vendingmaschines", "Shrines"], correct: 2 },
-    { type: "multiple", question: "Frage 5: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },{ type: "single", question: "Frage 4: Wer schrieb 'Romeo und Julia'?", options: ["Goethe", "Schiller", "Shakespeare", "Kafka"], correct: 2 },
-    { type: "single", question: "Frage 6: Which Japanese writing system is used for foreign words like Coffee or Camera?", options: ["Romanji", "Kanji", "Katakana", "Hiragana"], correct: 2 },
-    { type: "single", question: "Frage 7: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
-    { type: "multiple", question: "Frage 8: (multiple selection): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Christianity"], correct: [1, 2] },
-    { type: "single", question: "Frage 9: How many prefectures does Japan have??", options: ["50", "28", "19", "47"], correct: 3 },{ type: "single", question: "Frage 9: What is the Biggest city in Japan?", options: ["Osaka", "Tokio", "Nara", "Fukushima"], correct: 1 },
-    { type: "multiple", question: "Frage 10: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
-    { type: "single", question: "Frage 11: Which Anime has 7000 Episodes? ", options: ["Mrs. Sazae", "One Piece", "reborn as a vending machine i now wander the dungeon", "Demon Slayer"], correct: 0 },
-    { type: "single", question: "Frage 13: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
-    { type: "multiple", question: "Frage 14: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
-    { type: "single", question: "Frage 15: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
+    { type: "single", question: "Question 1: What is the Biggest city in Japan?", options: ["Osaka", "Tokio", "Nara", "Fukushima"], correct: 1 },
+    { type: "single", question: "Question 2: How many prefectures does Japan have??", options: ["50", "28", "19", "47"], correct: 3 },
+    { type: "multiple", question: "Question 3: (multiple selection): Welche dieser Länder liegen in Europa?", options: ["Frankreich", "Japan", "Spanien", "Kanada"], correct: [0, 2] },
+    { type: "single", question: "Question 4: What can you find on almost every street corner in Japan?", options: ["Restaurants", "Kameras", "Vendingmaschines", "Shrines"], correct: 2 },
+    { type: "multiple", question: "Question 5: (multiple selection): Next to rice are also...Important", options: ["Zitrone", "Seafood", "Orange", "Banane"], correct: [0, 2] },{ type: "single", question: "Frage 4: Wer schrieb 'Romeo und Julia'?", options: ["Goethe", "Schiller", "Shakespeare", "Kafka"], correct: 2 },
+    { type: "single", question: "Question 6: Which Japanese writing system is used for foreign words like Coffee or Camera?", options: ["Romanji", "Kanji", "Katakana", "Hiragana"], correct: 2 },
+    { type: "single", question: "Question 7:Next to rice is also... important", options: ["Soup", "Seafood", "Udon", "Cabbage"], correct: 1 },
+    { type: "multiple", question: "Question 8: (multiple selection): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Christianity"], correct: [1, 2] },
+    { type: "single", question: "Question 9: What is the most popular Sport in Japan?", options: ["Football", "Sumo", "Basebal", "Rugby"], correct: 2 },
+    { type: "multiple", question: "Question 10: Hokkaido is a...?", options: ["...Prefecture", "...City", "...major island", "County"], correct: [0, 2] },
+    { type: "single", question: "Question 11: Which Anime has 7000 Episodes? ", options: ["Mrs. Sazae", "One Piece", "reborn as a vending machine i now wander the dungeon", "Demon Slayer"], correct: 0 },
+    { type: "single", question: "Question 13: How many people live in Japan?", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
+    { type: "multiple", question: "Question 14: (multiple selection): Welche der folgenden Früchte sind Zitrusfrüchte?", options: ["Zitrone", "Apfel", "Orange", "Banane"], correct: [0, 2] },
+    { type: "single", question: "Question 15: How many people live in Japan", options: ["122.4 million", "88.4 million", "2.8 billion", "40 million"], correct: 0 },
 ]; 
 
 let currentQuestionIndex = 0;
@@ -33,7 +33,7 @@ function loadQuestion() {
         <div class="progress">Frage ${currentQuestionIndex + 1} von ${quizData.length}</div>
         <h2>${currentData.question}</h2>
         <div class="options-container" id="options"></div>
-        <button class="action-btn" id="next-btn" disabled>Bestätigen & Weiter</button>
+        <button class="action-btn" id="next-btn" disabled>Confirm & Next</button>
     `;
 
     const optionsContainer = document.getElementById("options");
