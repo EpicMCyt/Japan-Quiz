@@ -71,13 +71,16 @@ function handleSelect(index, button, nextBtn, type) {
         button.classList.add("selected");
         selectedIndices = [index];
     } else if (type === "multiple") {
-        // Bei Multiple-Choice Auswahl umschalten (Toggle)
+        // Bei Multiple-Choice Auswahl umschalten (Toggle), aber maximal 2 Antworten
         if (selectedIndices.includes(index)) {
             selectedIndices = selectedIndices.filter(i => i !== index);
             button.classList.remove("selected");
         } else {
-            selectedIndices.push(index);
-            button.classList.add("selected");
+            // Maximal 2 Antworten erlauben
+            if (selectedIndices.length < 2) {
+                selectedIndices.push(index);
+                button.classList.add("selected");
+            }
         }
     }
 
@@ -104,22 +107,11 @@ function checkAnswer() {
     } else if (currentData.type === "multiple") {
         // Prüfen, ob die Arrays exakt übereinstimmen
         const isCorrect = arraysEqual(selectedIndices, currentData.correct);
-        const correctCount = Array.isArray(currentData.correct) ? currentData.correct.length : 1;
-        const selectedCount = selectedIndices.length;
-        
         if (isCorrect) {
-            // Genau die richtigen Antworten: 2 Punkte
-            score += 2;
-        } else if (selectedCount === correctCount + 1) {
-            // Eine Antwort zu viel: 1 Punkt (Strafe von -1)
-            score += 1;
-        } else if (selectedCount > correctCount + 1) {
-            // Zwei oder mehr Antworten zu viel: 0 Punkte (Strafe von -2 oder mehr)
-            // Keine Punkte
-        } else {
-            // Falsch oder unvollständig: 0 Punkte
-            // Keine Punkte
+            // Genau die richtigen Antworten: 1 Punkt
+            score++;
         }
+        // Falsche oder unvollständige Antworten: 0 Punkte
     }
 }
 
@@ -129,7 +121,7 @@ function showResults() {
         <div class="result-screen">
             <h2>Quiz beendet!</h2>
             <p>Du hast alle Fragen beantwortet. Hier ist dein Ergebnis:</p>
-            <div class="score">${score} Punkte</div>
+            <div class="score">${score} von ${quizData.length} Punkten</div>
             <button class="action-btn" onclick="location.reload()">Quiz Neustarten</button>
         </div>
     `;
