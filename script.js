@@ -108,8 +108,8 @@ function checkAnswer() {
         // Prüfen, ob die Arrays exakt übereinstimmen
         const isCorrect = arraysEqual(selectedIndices, currentData.correct);
         if (isCorrect) {
-            // Genau die richtigen Antworten: 1 Punkt
-            score++;
+            // Genau die richtigen Antworten: 2 Punkte
+            score += 2;
         }
         // Falsche oder unvollständige Antworten: 0 Punkte
     }
@@ -121,7 +121,7 @@ function showResults() {
         <div class="result-screen">
             <h2>Quiz beendet!</h2>
             <p>Du hast alle Fragen beantwortet. Hier ist dein Ergebnis:</p>
-            <div class="score">${score} von ${quizData.length} Punkten</div>
+            <div class="score">${score} Punkte</div>
             <button class="action-btn" onclick="location.reload()">Quiz Neustarten</button>
         </div>
     `;
