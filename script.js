@@ -1,6 +1,6 @@
 // 1. Die 10 Fragen (Datenstruktur)
 const quizData = [
-  { type: "single", question: "Question 1: What is the biggest city in Japan?", options: ["Osaka", "Tokyo", "Nara", "Fukushima"], correct: 1 },
+    { type: "single", question: "Question 1: What is the biggest city in Japan?", options: ["Osaka", "Tokyo", "Nara", "Fukushima"], correct: 1 },
     { type: "single", question: "Question 2: What can you find on almost every street corner in Japan?", options: ["Restaurants", "Cameras", "Vending machines", "Shrines"], correct: 2 },
     { type: "single", question: "Question 3: Which number do people in Japan often skip because it sounds like 'death'?", options: ["Number 7", "Number 9", "Number 4", "Number 13"], correct: 2 },
     { type: "single", question: "Question 4: In a Japanese sentence, where does the Verb usually go?", options: ["At the very beginning", "Between Subject and Object", "At the very end", "It is usu[...]
