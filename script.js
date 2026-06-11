@@ -3,13 +3,13 @@ const quizData = [
   { type: "single", question: "Question 1: What is the biggest city in Japan?", options: ["Osaka", "Tokyo", "Nara", "Fukushima"], correct: 1 },
     { type: "single", question: "Question 2: What can you find on almost every street corner in Japan?", options: ["Restaurants", "Cameras", "Vending machines", "Shrines"], correct: 2 },
     { type: "single", question: "Question 3: Which number do people in Japan often skip because it sounds like 'death'?", options: ["Number 7", "Number 9", "Number 4", "Number 13"], correct: 2 },
-    { type: "single", question: "Question 4: In a Japanese sentence, where does the Verb usually go?", options: ["At the very beginning", "Between Subject and Object", "At the very end", "It is usually left out"], correct: 2 },
-    { type: "multiple", question: "Question 5: (multiple selection): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Christianity"], correct: [1, 2] },
-    { type: "single", question: "Question 6: Which Anime has over 7000 episodes?", options: ["Sazae-san", "One Piece", "Reborn as a Vending Machine, Now I Wander the Dungeon", "Spy X Family"], correct: 0 },
+    { type: "single", question: "Question 4: In a Japanese sentence, where does the Verb usually go?", options: ["At the very beginning", "Between Subject and Object", "At the very end", "It is usu[...]
+    { type: "multiple", question: "Question 5: (multiple selection): Which two main religions do many Japanese people practice at the same time?", options: ["Hinduism", "Shintoism", "Buddhism", "Ch[...]
+    { type: "single", question: "Question 6: Which Anime has over 7000 episodes?", options: ["Sazae-san", "One Piece", "Reborn as a Vending Machine, Now I Wander the Dungeon", "Spy X Family"], corr[...]
     { type: "single", question: "Question 7: How many prefectures does Japan have?", options: ["50", "28", "19", "47"], correct: 3 },
-    { type: "single", question: "Question 8: Why should you never stick your chopsticks vertically into a bowl of rice?", options: ["It resembles a funeral ritual", "It breaks the chopsticks", "It is bad table manners", "It makes the food cold"], correct: 0 },
+    { type: "single", question: "Question 8: Why should you never stick your chopsticks vertically into a bowl of rice?", options: ["It resembles a funeral ritual", "It breaks the chopsticks", "It[...]
     { type: "single", question: "Question 9: What is the most popular sport in Japan?", options: ["Football", "Sumo", "Baseball", "Rugby"], correct: 2 },
-    { type: "multiple", question: "Question 10: (multiple selection): The Ogasawara Islands are also known as...?", options: ["...the Ryukyu Islands", "...the Bonin Islands", "...the smallest prefecture", "...the 'Galapagos of Japan'"], correct: [1, 3] },
+    { type: "multiple", question: "Question 10: (multiple selection): The Ogasawara Islands are also known as...?", options: ["...the Ryukyu Islands", "...the Bonin Islands", "...the smallest pref[...]
     { type: "single", question: "Question 11: Which Japanese writing system is used for foreign words like Coffee or Camera?", options: ["Romaji", "Kanji", "Katakana", "Hiragana"], correct: 2 },
     { type: "single", question: "Question 12: What does the traditional concept of 'Wa' stand for in Japanese society?", options: ["Speed", "Success", "Harmony", "Strength"], correct: 2 },
     { type: "multiple", question: "Question 13: (multiple selection): Hokkaido is a...?", options: ["...Prefecture", "...City", "...major island", "...County"], correct: [0, 2] },
@@ -104,8 +104,21 @@ function checkAnswer() {
     } else if (currentData.type === "multiple") {
         // Prüfen, ob die Arrays exakt übereinstimmen
         const isCorrect = arraysEqual(selectedIndices, currentData.correct);
+        const correctCount = Array.isArray(currentData.correct) ? currentData.correct.length : 1;
+        const selectedCount = selectedIndices.length;
+        
         if (isCorrect) {
-            score++;
+            // Genau die richtigen Antworten: 2 Punkte
+            score += 2;
+        } else if (selectedCount === correctCount + 1) {
+            // Eine Antwort zu viel: 1 Punkt (Strafe von -1)
+            score += 1;
+        } else if (selectedCount > correctCount + 1) {
+            // Zwei oder mehr Antworten zu viel: 0 Punkte (Strafe von -2 oder mehr)
+            // Keine Punkte
+        } else {
+            // Falsch oder unvollständig: 0 Punkte
+            // Keine Punkte
         }
     }
 }
@@ -116,7 +129,7 @@ function showResults() {
         <div class="result-screen">
             <h2>Quiz beendet!</h2>
             <p>Du hast alle Fragen beantwortet. Hier ist dein Ergebnis:</p>
-            <div class="score">${score} von ${quizData.length} Punkten</div>
+            <div class="score">${score} Punkte</div>
             <button class="action-btn" onclick="location.reload()">Quiz Neustarten</button>
         </div>
     `;
