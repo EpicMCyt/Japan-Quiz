@@ -20,12 +20,14 @@ const quizData = [
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedIndices = []; // Speichert die aktuellen Klicks des Users
+let answerSubmitted = false; // Verfolgt, ob die Antwort bereits eingereicht wurde
 
 const quizContainer = document.getElementById("quiz");
 
 // 2. Quiz starten
 function loadQuestion() {
     selectedIndices = []; // Zurücksetzen für die neue Frage
+    answerSubmitted = false; // Zurücksetzen des Submission-Status
     const currentData = quizData[currentQuestionIndex];
     
     // HTML-Gerüst für die aktuelle Frage bauen
@@ -51,18 +53,30 @@ function loadQuestion() {
 
     // Event-Listener für den Weiter-Button
     nextBtn.addEventListener("click", () => {
-        checkAnswer();
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-            loadQuestion();
+        if (!answerSubmitted) {
+            // Erste Klick: Antwort einreichen und Feedback zeigen
+            checkAnswer();
+            showFeedback(currentData);
+            answerSubmitted = true;
+            nextBtn.innerText = "Next Question";
         } else {
-            showResults();
+            // Zweite Klick: Zur nächsten Frage gehen
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
         }
     });
 }
 
 // 3. Logik, wenn der User auf eine Antwort klickt
 function handleSelect(index, button, nextBtn, type) {
+    if (answerSubmitted) {
+        return; // Keine Änderung der Antwort nach Bestätigung
+    }
+
     if (type === "single" || type === "matching") {
         // Bei Single-Choice alle anderen Abwählen
         const buttons = document.querySelectorAll(".option-btn");
@@ -115,7 +129,61 @@ function checkAnswer() {
     }
 }
 
-// 5. Endscreen anzeigen
+// 5. Feedback anzeigen
+function showFeedback(currentData) {
+    const currentData2 = quizData[currentQuestionIndex];
+    const optionsContainer = document.getElementById("options");
+    const nextBtn = document.getElementById("next-btn");
+    
+    // Alle Buttons deaktivieren
+    const allButtons = document.querySelectorAll(".option-btn");
+    allButtons.forEach(btn => btn.disabled = true);
+
+    // Bestimme, ob die Antwort richtig ist
+    let isCorrect = false;
+    if (currentData.type === "single" || currentData.type === "matching") {
+        isCorrect = selectedIndices[0] === currentData.correct;
+    } else if (currentData.type === "multiple") {
+        isCorrect = arraysEqual(selectedIndices, currentData.correct);
+    }
+
+    // Feedback-Element erstellen
+    const feedbackDiv = document.createElement("div");
+    feedbackDiv.classList.add("feedback");
+    if (isCorrect) {
+        feedbackDiv.classList.add("correct");
+        feedbackDiv.innerHTML = `<p style="color: green; font-weight: bold; font-size: 18px;">✓ Richtig!</p>`;
+    } else {
+        feedbackDiv.classList.add("incorrect");
+        feedbackDiv.innerHTML = `<p style="color: red; font-weight: bold; font-size: 18px;">✗ Falsch!</p>`;
+    }
+
+    // Lösung anzeigen
+    const solutionDiv = document.createElement("div");
+    solutionDiv.classList.add("solution");
+    solutionDiv.style.marginTop = "20px";
+    solutionDiv.style.padding = "15px";
+    solutionDiv.style.backgroundColor = "#f0f0f0";
+    solutionDiv.style.borderRadius = "5px";
+    
+    if (currentData.type === "single" || currentData.type === "matching") {
+        const correctAnswer = currentData.options[currentData.correct];
+        solutionDiv.innerHTML = `<p><strong>Lösung:</strong> ${correctAnswer}</p>`;
+    } else if (currentData.type === "multiple") {
+        const correctAnswers = currentData.correct.map(idx => currentData.options[idx]).join(" + ");
+        solutionDiv.innerHTML = `<p><strong>Lösung:</strong> ${correctAnswers}</p>`;
+    }
+
+    // Feedback und Lösung hinzufügen
+    optionsContainer.parentNode.insertBefore(feedbackDiv, optionsContainer);
+    optionsContainer.parentNode.insertBefore(solutionDiv, nextBtn);
+    
+    // Button-Text ändern
+    nextBtn.disabled = false;
+    nextBtn.innerText = "Next Question";
+}
+
+// 6. Endscreen anzeigen
 function showResults() {
     quizContainer.innerHTML = `
         <div class="result-screen">
